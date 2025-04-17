@@ -3,6 +3,7 @@ import { load } from "js-yaml";
 export interface User {
 	username: string;
 	url: string;
+	lc_username: string;
 }
 
 const url = "https://raw.githubusercontent.com/Jish2/leetpals/refs/heads/main/sites.yaml";
