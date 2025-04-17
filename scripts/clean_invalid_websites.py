@@ -18,8 +18,8 @@ for item in sites:
 
 write_yaml("sites.yaml", valid_sites)
 
-action_output = ""
+action_output = "### Removed Sites and Owners\n\n"
 for site in invalid_sites:
-    action_output += f"@{site['username']} - {site['url']}\n"
+    action_output += f"@{site['username']}: {site['url']}\n"
 
 set_multiline_output("SCRAPER_OUTPUTS", action_output)

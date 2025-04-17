@@ -61,10 +61,10 @@ jobs:
 
       - env:
           SCRAPER_OUTPUTS: ${{needs.CleanUp.outputs.SCRAPER_OUTPUTS}}
-        name: Create Issue With Results
+        name: Create Issue With s
         uses: dacbd/create-issue-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: Clean Invalid Sites - ${{ env.NOW }}
-          labels: scrape
+          title: Removed From Webring - ${{ env.NOW }}
+          labels: remove
           body: ${{env.SCRAPER_OUTPUTS}}
