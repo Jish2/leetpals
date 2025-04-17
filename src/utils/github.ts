@@ -9,7 +9,7 @@ export interface User {
 const url = "https://raw.githubusercontent.com/Jish2/leetpals/refs/heads/main/sites.yaml";
 
 export const getUsers = async () => {
-	const data = await fetch(url);
+	const data = await fetch(url, { cache: "no-store" });
 	const text = await data.text();
 	const users = load(text) as User[];
 
