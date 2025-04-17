@@ -59,3 +59,5 @@ jobs:
       pull-requests: write
     steps:
       - uses: hmarr/auto-approve-action@v4
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
