@@ -2,7 +2,7 @@ from utils.rest_utils import website_is_up
 from utils.yaml_utils import parse_yaml, write_yaml
 from utils.write_action_output import set_multiline_output
 
-sites = parse_yaml("..//sites.yaml")
+sites = parse_yaml("../sites.yaml")
 
 invalid_sites = []
 valid_sites = []
@@ -16,7 +16,7 @@ for item in sites:
     else:
         valid_sites.append(item)
 
-write_yaml("..//sites.yaml", valid_sites)
+write_yaml("../sites.yaml", valid_sites)
 
 action_output = ""
 for site in invalid_sites:
