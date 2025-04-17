@@ -13,7 +13,7 @@ jobs:
   # ----------------------------------------------------------------------------------------------
   # Event `push`: Compare the preceding remote commit -> to the current commit of the main branch
   # ----------------------------------------------------------------------------------------------
-  CleanUp:
+  PRValidation:
     runs-on: ubuntu-latest
     permissions: write-all
     outputs:
