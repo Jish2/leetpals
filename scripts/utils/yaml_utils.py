@@ -1,11 +1,14 @@
 import yaml
 
 
-def parse_yaml(filepath):
+def parse_yaml(string):
+    return yaml.safe_load(string)
+
+
+def parse_yaml_file(filepath):
     with open(filepath) as stream:
         try:
-            parsed_yaml = list(yaml.safe_load(stream))
-            return parsed_yaml
+            return parse_yaml(stream)
         except yaml.YAMLError as exc:
             print(exc)
     return None

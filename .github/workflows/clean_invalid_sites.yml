@@ -1,7 +1,6 @@
 name: Clean Invalid Sites
 run-name: Clean Invalid Sites
 on:
-  push:
   schedule:
     - cron: "0 13 * * *"
 jobs:
@@ -61,10 +60,10 @@ jobs:
 
       - env:
           SCRAPER_OUTPUTS: ${{needs.CleanUp.outputs.SCRAPER_OUTPUTS}}
-        name: Create Issue With Results
+        name: Create Issue With Scraper Output
         uses: dacbd/create-issue-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          title: Clean Invalid Sites - ${{ env.NOW }}
-          labels: scrape
+          title: Removed From Webring - ${{ env.NOW }}
+          labels: remove
           body: ${{env.SCRAPER_OUTPUTS}}
