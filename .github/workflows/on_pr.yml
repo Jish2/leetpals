@@ -50,3 +50,4 @@ jobs:
         with:
           message: |
             ${{env.VALIDATION_OUTPUT}}
+          message-id: uuidgen

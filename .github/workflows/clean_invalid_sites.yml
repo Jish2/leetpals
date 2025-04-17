@@ -60,7 +60,7 @@ jobs:
 
       - env:
           SCRAPER_OUTPUTS: ${{needs.CleanUp.outputs.SCRAPER_OUTPUTS}}
-        name: Create Issue With s
+        name: Create Issue With Scraper Output
         uses: dacbd/create-issue-action@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
