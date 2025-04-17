@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     outputs:
-      SCRAPER_OUTPUTS: ${{ steps.runScraper.outputs.SCRAPER_OUTPUTS }}
+      VALIDATION_OUTPUT: ${{ steps.runValidation.outputs.VALIDATION_OUTPUT }}
     steps:
       - run: echo "Check PR is Valid"
 
@@ -41,7 +41,7 @@ jobs:
       - name: install requirements
         run: pip install -r requirements.txt
 
-      - id: runScraper
+      - id: runValidation
         run: python scripts/validate_pr.py ${{ github.event.pull_request.user.login }} ${{ steps.changed-files.outputs.all_changed_files }}
 
   changed_files:
@@ -67,11 +67,14 @@ jobs:
             echo "$file was changed"
           done
   AddComment:
+    needs: PRValidation
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
     steps:
-      - uses: mshick/add-pr-comment@v2
+      - env:
+          VALIDATION_OUTPUT: ${{needs.PRValidation.outputs.VALIDATION_OUTPUT}}
+        uses: mshick/add-pr-comment@v2
         with:
           message: |
-            **Hello MAIN**
+            ${{env.VALIDATION_OUTPUT}}
