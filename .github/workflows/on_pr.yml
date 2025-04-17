@@ -57,6 +57,5 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    if: ${{needs.PRValidation.outputs.VALIDATION_OUTPUT}} == 'LGTM!'
     steps:
       - uses: hmarr/auto-approve-action@v4
