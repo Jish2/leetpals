@@ -18,8 +18,7 @@ OUTPUT_VAR = "VALIDATION_OUTPUT"
 def validate_pr(github_username):
     response = requests.get(ORIGINAL_SITES_PATH)
     original_sites = parse_yaml(response.text)
-    new_sites = parse_yaml_file("../sites.yaml")
-    print(new_sites, original_sites, github_username)
+    new_sites = parse_yaml_file("sites.yaml")
     # assert one site per gh user
     user_count = 0
 
@@ -40,7 +39,7 @@ def validate_pr(github_username):
     diff = []
 
     for site in new_sites:
-        if site not in original_sites:
+        if not original_sites or site not in original_sites:
             diff.append(site)
 
     if len(diff) > 1:
