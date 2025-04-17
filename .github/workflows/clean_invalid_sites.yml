@@ -11,7 +11,7 @@ jobs:
     outputs:
       SCRAPER_OUTPUTS: ${{ steps.runScraper.outputs.SCRAPER_OUTPUTS }}
     steps:
-      - run: echo "🎉 The job was automatically triggered by a event."
+      - run: echo "Auto Clean Invalid Sites"
 
       - name: checkout repo
         uses: actions/checkout@v2
