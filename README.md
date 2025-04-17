@@ -1,1 +1,0 @@
-# leetpals webring
