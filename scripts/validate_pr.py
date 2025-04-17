@@ -18,8 +18,10 @@ OUTPUT_VAR = "VALIDATION_OUTPUT"
 def validate_pr(github_username):
     response = requests.get(ORIGINAL_SITES_PATH)
     original_sites = parse_yaml(response.text)
-    new_sites = parse_yaml_file("../sites.yaml")
-
+    try:
+        new_sites = parse_yaml_file("sites.yaml")
+    except Exception:
+        new_sites = parse_yaml_file("../sites.yaml")
     # assert one site per gh user
     user_count = 0
 
@@ -28,7 +30,7 @@ def validate_pr(github_username):
             user_count += 1
 
     if user_count != 1:
-        text = "Do you even exist?"
+        text = "Do you type your github username wrong?"
         if user_count > 1:
             text = "One site per user please."
         set_multiline_output(
@@ -40,7 +42,7 @@ def validate_pr(github_username):
     diff = []
 
     for site in new_sites:
-        if site not in original_sites:
+        if not original_sites or site not in original_sites:
             diff.append(site)
 
     if len(diff) > 1:
@@ -82,6 +84,7 @@ def validate_pr(github_username):
 
 
 # assert that user has only edited sites.yaml
+
 if len(changed_files) > 1 and "sites.yaml" in changed_files:
     set_multiline_output(
         OUTPUT_VAR,
