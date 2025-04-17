@@ -24,6 +24,9 @@ jobs:
       - name: install requirements
         run: pip install -r requirements.txt
 
+      - name: ls
+        run: ls
+
       - id: runScraper
         run: python scripts/clean_invalid_websites.py
 
