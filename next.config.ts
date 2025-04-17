@@ -1,7 +1,18 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
+import prism from "remark-prism";
+import type { Pluggable } from "unified";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+	pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+	// extension: /\.mdx?$/,
+	extension: /\.(md|mdx)$/,
+	options: {
+		remarkPlugins: [prism as Pluggable],
+	},
+});
+
+export default withMDX(nextConfig);
