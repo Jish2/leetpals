@@ -1,13 +1,7 @@
 name: CI
 
 on:
-  push:
   pull_request:
-    types:
-      - opened
-      - edited
-      - reopened
-      - synchronize
 jobs:
   # -------------------------------------------------------------
   # Using GitHub's API is not supported for push events

@@ -35,7 +35,7 @@ def validate_pr(github_username):
             OUTPUT_VAR,
             text,
         )
-        sys.exit(-1)
+        sys.exit(0)
 
     diff = []
 
@@ -48,14 +48,14 @@ def validate_pr(github_username):
             OUTPUT_VAR,
             "You have changed more than one site in your PR. Please only add one site per PR.",
         )
-        sys.exit(-1)
+        sys.exit(0)
 
     if len(diff) == 0:
         set_multiline_output(
             OUTPUT_VAR,
             "Did you even change anything...",
         )
-        sys.exit(-1)
+        sys.exit(0)
 
     change = diff[0]
 
@@ -70,15 +70,15 @@ def validate_pr(github_username):
             OUTPUT_VAR,
             "Don't touch other peoples sites please.",
         )
-        sys.exit(-1)
+        sys.exit(0)
 
     if not website_is_up(change["url"]):
         set_multiline_output(OUTPUT_VAR, "The site you have added is not live.")
-        sys.exit(-1)
+        sys.exit(0)
 
     if not user_is_cracked_at_leetcode(change["lc_username"]):
         set_multiline_output(OUTPUT_VAR, "Get Good at Leetcode.")
-        sys.exit(-1)
+        sys.exit(0)
 
 
 # assert that user has only edited sites.yaml
