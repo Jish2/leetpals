@@ -5,7 +5,7 @@ import Readme from "./../../README.mdx";
 export default function Home() {
 	return (
 		<div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen gap-16 font-[family-name:var(--font-geist-sans)] max-w-[600px] w-[600px] whitespace-pre-wrap break-words">
-			<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-[600px] whitespace-pre-wrap break-words">
+			<main className="flex flex-col gap-4 row-start-2 items-center sm:items-start w-[600px] whitespace-pre-wrap break-words">
 				<Readme />
 
 				<div className="flex gap-4 items-center flex-col sm:flex-row">
