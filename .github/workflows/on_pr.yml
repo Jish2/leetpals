@@ -31,7 +31,7 @@ jobs:
         continue-on-error: true
 
       - name: print validation output
-        run: echo ${{ steps.runValidation.outputs.VALIDATION_OUTPUT }}
+        run: echo "${{ steps.runValidation.outputs.VALIDATION_OUTPUT }}"
 
   AddComment:
     needs: PRValidation

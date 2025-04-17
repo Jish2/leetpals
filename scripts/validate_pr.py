@@ -30,7 +30,7 @@ def validate_pr(github_username):
             user_count += 1
 
     if user_count != 1:
-        text = "Do you type your github username wrong?"
+        text = "Did you type your github username wrong?"
         if user_count > 1:
             text = "One site per user please."
         set_multiline_output(
@@ -70,7 +70,7 @@ def validate_pr(github_username):
     if change["username"] != github_username:
         set_multiline_output(
             OUTPUT_VAR,
-            "Don't touch other peoples sites please.",
+            "Dont touch other peoples sites please.",
         )
         sys.exit(-1)
 
@@ -95,11 +95,15 @@ if len(changed_files) > 1 and "sites.yaml" in changed_files:
 if len(changed_files) == 1 and changed_files[0] == "sites.yaml":
     try:
         validate_pr(github_username)
+        set_multiline_output(
+            OUTPUT_VAR,
+            "LGTM!",
+        )
     except Exception as e:
         set_multiline_output(OUTPUT_VAR, "Skill Diff")
         sys.exit(-1)
 
 set_multiline_output(
     OUTPUT_VAR,
-    "LGTM!",
+    "We'll have someone take a look",
 )
