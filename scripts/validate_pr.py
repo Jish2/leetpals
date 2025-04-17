@@ -19,7 +19,7 @@ def validate_pr(github_username):
     response = requests.get(ORIGINAL_SITES_PATH)
     original_sites = parse_yaml(response.text)
     new_sites = parse_yaml_file("../sites.yaml")
-
+    print(new_sites, original_sites, github_username)
     # assert one site per gh user
     user_count = 0
 
