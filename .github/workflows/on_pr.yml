@@ -39,13 +39,15 @@ jobs:
     permissions:
       pull-requests: write
     steps:
+      - name: generate uuid
+        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - env:
           VALIDATION_OUTPUT: ${{needs.PRValidation.outputs.VALIDATION_OUTPUT}}
         uses: mshick/add-pr-comment@v2
         with:
           message: |
             ${{env.VALIDATION_OUTPUT}}
-          message-id: uuidgen
+          message-id: $(uuidgen)
 
   auto-approve:
     needs: PRValidation
