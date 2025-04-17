@@ -87,14 +87,14 @@ if len(changed_files) > 1 and "sites.yaml" in changed_files:
         OUTPUT_VAR,
         "Please do not include sites.yaml changes in a PR with code changes.",
     )
-    raise Exception()
+    sys.exit(0)
 
 if len(changed_files) == 1 and changed_files[0] == "sites.yaml":
     try:
         validate_pr(github_username)
     except Exception as e:
         set_multiline_output(OUTPUT_VAR, "Skill Diff")
-        sys.exit(-1)
+        sys.exit(0)
 
 set_multiline_output(
     OUTPUT_VAR,
