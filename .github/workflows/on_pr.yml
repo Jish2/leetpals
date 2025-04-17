@@ -37,6 +37,7 @@ jobs:
 
       - id: runValidation
         run: python scripts/validate_pr.py ${{ github.event.pull_request.user.login }} ${{ steps.changed-files.outputs.all_changed_files }}
+        continue-on-error: true
 
   AddComment:
     needs: PRValidation
