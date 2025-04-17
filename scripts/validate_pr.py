@@ -82,6 +82,7 @@ def validate_pr(github_username):
 
 
 # assert that user has only edited sites.yaml
+
 # if len(changed_files) > 1 and "sites.yaml" in changed_files:
 #     set_multiline_output(
 #         OUTPUT_VAR,
@@ -89,12 +90,12 @@ def validate_pr(github_username):
 #     )
 #     sys.exit(-1)
 
-if len(changed_files) == 1 and changed_files[0] == "sites.yaml":
-    try:
-        validate_pr(github_username)
-    except Exception as e:
-        set_multiline_output(OUTPUT_VAR, "Skill Diff")
-        sys.exit(-1)
+# if len(changed_files) == 1 and changed_files[0] == "sites.yaml":
+try:
+    validate_pr(github_username)
+except Exception as e:
+    set_multiline_output(OUTPUT_VAR, "Skill Diff")
+    sys.exit(-1)
 
 set_multiline_output(
     OUTPUT_VAR,
