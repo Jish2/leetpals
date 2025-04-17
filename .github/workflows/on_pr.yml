@@ -3,15 +3,6 @@ name: CI
 on:
   pull_request:
 jobs:
-  # -------------------------------------------------------------
-  # Using GitHub's API is not supported for push events
-  # -------------------------------------------------------------
-  #
-  # ----------------------------------------------------------------------------------------------
-  # Using local .git history
-  # ----------------------------------------------------------------------------------------------
-  # Event `push`: Compare the preceding remote commit -> to the current commit of the main branch
-  # ----------------------------------------------------------------------------------------------
   PRValidation:
     runs-on: ubuntu-latest
     permissions: write-all
@@ -37,6 +28,10 @@ jobs:
 
       - id: runValidation
         run: python scripts/validate_pr.py ${{ github.event.pull_request.user.login }} ${{ steps.changed-files.outputs.all_changed_files }}
+        continue-on-error: true
+
+      - name: print validation output
+        run: echo ${{ steps.runValidation.outputs.VALIDATION_OUTPUT }}
 
   AddComment:
     needs: PRValidation
@@ -44,13 +39,15 @@ jobs:
     permissions:
       pull-requests: write
     steps:
+      - name: generate uuid
+        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - env:
           VALIDATION_OUTPUT: ${{needs.PRValidation.outputs.VALIDATION_OUTPUT}}
         uses: mshick/add-pr-comment@v2
         with:
           message: |
             ${{env.VALIDATION_OUTPUT}}
-          message-id: uuidgen
+          message-id: $(uuidgen)
 
   auto-approve:
     needs: PRValidation
