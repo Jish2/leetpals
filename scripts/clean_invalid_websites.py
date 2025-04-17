@@ -22,4 +22,4 @@ action_output = ""
 for site in invalid_sites:
     action_output += f"@{site['username']} - {site['url']}\n"
 
-set_multiline_output("OUTPUT", action_output)
+set_multiline_output("SCRAPER_OUTPUTS", action_output)
